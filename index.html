@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
     <script src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
         crossorigin='anonymous'></script>
     <script src="app.js"></script>
@@ -14,18 +16,28 @@
 </head>
 
 <body>
-    <!-- <button id="gif-button">gif button</button>
-    buttons for topics -->
-    <!-- <div id="topic-view"></div> -->
-    <!-- where images will go -->
-    <div class="buttons"></div>
-    <div id="images"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="buttons"></div>
+            </div>
+            <div class="col-md-6">
+                <form id="gif-form">
+                    <label for="gif-input">Make a gif!</label>
+                    <input type="text" id="gif-input">
+                    <br>
+                    <!-- Button triggers new gif to be added -->
+                    <input id="add-gif" type="submit" value="Pick a topic!">
+                </form>
+            </div>
+        </div>
+    </div>
 
-    <!-- <div class="pokemon"></div>
-    <div class="terraceHouse"></div>
-    <div class="ryanGosling"></div>
-    <div class="gudetama"></div>
-    <div class="jellygummy"></div> -->
+    <div class="row">
+        <div class="col-md-12">
+            <div id="images"></div>
+        </div>
+    </div>
 
 </body>
 

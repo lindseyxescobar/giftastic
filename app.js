@@ -1,14 +1,14 @@
 $(document).ready(function () {
-    var topics = ["pokemon", "terrace_house", "ryan_gosling", "gudetama", "jellygummy"];
+    var topics = ["pokemon", "coffee", "ryan_gosling", "gudetama", "jellygummy"];
 
     var apiKey = "Vri37h5oUMjGDBMdYDRIanCtBdvfAb6E";
 
     // Function for displaying buttons
     function renderButtons() {
 
-        // // Delete the content inside the topic-button div prior to adding new gifs
-        // // (this is necessary otherwise you will have repeat buttons)
-        // $("#topic-view").empty();
+        // Delete the content inside the topic-button div prior to adding new gifs
+        // (this is necessary otherwise you will have repeat buttons)
+        $(".buttons").empty();
 
 
         // Loop through the array of topics, then generate buttons for each topic in the array
@@ -17,24 +17,31 @@ $(document).ready(function () {
             btn.text(topics[i]);
             btn.attr("data-name", topics[i]);
             $(".buttons").append(btn);
-
-            // //set tag name into url for each topic
-            // var customURL = "https://api.giphy.com/v1/gifs/search?q=" + topic[1] + "&api_key=" + apiKey + "&limit10";
-
-
-        };
-    };
+        }
+    }
     renderButtons();
+    //adding button for new topic from input form, new button has correct data-name, but does link into url
+    $("#add-gif").on("click", function (event) {
+        event.preventDefault();
+        var newTopic = $("#gif-input").val().trim();
+        topics.push(newTopic);
+        console.log(newTopic);
+        var btn = $("<button>");
+        btn.text(newTopic);
+        btn.attr("data-name", topics[topics.length - 1]);
+        $(".buttons").append(btn);
+        console.log(topics.toString());
+    })
 
+    $(document).on("click", "button", function () {
+        // // Function for dumping the JSON content for each button into the div
+        // $("button").on("click", function () {
 
-
-    // // Function for dumping the JSON content for each button into the div
-    $("button").on("click", function () {
-
-
+        console.log("button clicked");
         var topic = $(this).attr("data-name");
 
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=" + apiKey + "&limit10";
+        console.log(topic);
 
         $.ajax({
             url: queryURL,
@@ -54,37 +61,16 @@ $(document).ready(function () {
                 var gifDiv = $("<div>")
 
                 //stores the img div be saved into the variable gifImage
-                var gifImage = $("<img>");
+                var gifImg = $("<img>");
 
                 //this sets the imageUrl into the src and then gif image into alt
-                gifImage.attr("src", results[i].images.fixed_height.url);
-                gifImage.attr("alt", "image");
+                gifImg.attr("src", results[i].images.fixed_height.url);
+                gifImg.attr("alt", "image");
 
-                //this attaches the catImage to the top in the images id
-                gifDiv.prepend(gifImage);
+                //this attaches the gifImage to the top in the images id
+                gifDiv.prepend(gifImg);
                 $("#images").prepend(gifDiv);
-
             }
-
-
         });
-    });
-
-    $(".gif").on("click", function () {
-        // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-        var s = $(this).attr("data-state");
-        // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-        // Then, set the image's data-state to animate
-        // Else set src to the data-still value
-        if (state === "still") {
-            var gifImage = $("<img>");
-            gifImage("src", $(this).attr("data-still"));
-        }
-        else (state === "animate") {
-            var gifImage = $("<img>");
-            gifImage("src", $(this).attr("data-animate"));
-        }
-    });
+    })
 });
-
-
