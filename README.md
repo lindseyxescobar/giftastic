@@ -1,1 +1,1 @@
-# giftastic
+This app has an array of topics that are rendered into buttons dynamically and call out to Giphy's API to display a set of gifs and a rating. 

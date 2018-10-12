@@ -20,7 +20,8 @@ $(document).ready(function () {
         }
     }
     renderButtons();
-    //adding button for new topic from input form, new button has correct data-name, but does link into url
+    //adding button for new topic from input form, new button has correct data-name
+
     $("#add-gif").on("click", function (event) {
         event.preventDefault();
         var newTopic = $("#gif-input").val().trim();
@@ -34,8 +35,7 @@ $(document).ready(function () {
     })
 
     $(document).on("click", "button", function () {
-        // // Function for dumping the JSON content for each button into the div
-        // $("button").on("click", function () {
+
 
         console.log("button clicked");
         var topic = $(this).attr("data-name");
@@ -49,8 +49,7 @@ $(document).ready(function () {
         }).then(function (response) {
             console.log(queryURL);
             console.log(response);
-            // $("#topic-view").text(JSON.stringify(response));
-            // });
+
 
             //sets a variable that that it retrieves from the object images to be saved 
             var results = response.data;
