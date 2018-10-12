@@ -70,6 +70,12 @@ $(document).ready(function () {
                 //this attaches the gifImage to the top in the images id
                 gifDiv.prepend(gifImg);
                 $("#images").prepend(gifDiv);
+
+
+                var rating = results[i].rating;
+
+                var ratingDiv = $("<div>").text("Rating: " + rating);
+                gifDiv.append(ratingDiv);
             }
         });
     })
